@@ -1,0 +1,143 @@
+www.git-scm.com 
+
+깃 허브(scm)-> sofrware configuration network (소프트웨어 배치 네트워크)
+		프로그램 뿐만아니라, 일기 ,모든 작업등을 저장 할수 있다.
+
+*************************
+GIT
+*************************
+1. 설치
+	1) www.git-scm.com 다운로드
+
+
+2. 사용방법
+	1) bash
+	2) gui : 개발툴의 플러그인 , sourcetree
+
+
+3. 버전관리 용어 
+	1) 알파 버전 
+	2) 베타 버전 
+	3) Milestone -> 1.0-M1, 1.0-M2
+	4) Release Candidate(RC) -> 1.0-RC1, 1.0-RC2, .....
+	5) GA(general Acailability) -> 1.0, 1.0GA
+
+4. 버전관리를 위한 전략(subversion 기준)
+	1) branch
+	2) tag
+	3) trunk   
+			snapshot -> 테스트버전이다.
+			branch -> 기능추가
+			release -> tag로 가는것
+			merge -> 업그레이드 하는것
+
+			git은 tags와 branches 개념만 쓴다.(trunk 안씀)
+
+dif 
+ls
+ls -a 더 자세히 보여줌
+
+5.실습
+
+	(1) Git을 설치후 가장 먼저해야하는것
+		- 사용자 등록 하기
+			git config -> 설명 나옴
+
+				git config --global user.name "yong"
+				git config --global user.email "rladydcks03@naver.com"
+		
+	(2) 프로젝트 생성 후 가장 먼저 해야할 일 
+		- 저장소 생성 
+			git init 
+				.git 생성 -> local 레포지토리
+			git clone -> 복제하는것 
+	
+	(3) 작업 후 해야할 일
+			- 스테이지에 데이터 올리기
+			git status -> 상태보기 			
+
+			git 프로젝트의 세가지 주요 섹션
+			working Directort , staging Area, .git directory
+			
+			untracked -> 깃의 관리를 안받는다는 것 
+			
+			track 상태로 만들기 -> git add test1.txt  -> staging상태 된것 
+			
+			git commit -m "첫번 째 커밋 입니다."  -> -m 메세지 "log확인할때 설명해주는 간단 설명"
+			git status -> clean (모든 작업 끝났다는것 )
+
+			text1.txt 수정  -> untracked도 아니고 track도 아닌상태가 된다. 수정된 상태라고 뜸
+			git add text1.txt -> 해주면 add는 스테이지에 올려준다.
+				git add 파일명
+				gif add 파일명,파일명
+				git add .
+	 			git add --all
+				
+
+			git commit -m "두번 째 커밋입니다."   -> clean 상태로 만들어줌
+
+			git commit 하면 여러줄 사용가능  들어가서 i 누르면 편집 가능 -> 편집하고 esc 하고 :wq (write 끝내라)
+			git log -> 로그를 볼수 있다.	
+			git log --graph	 -> spacebar로 다음 페이지 볼수있다 다보면 q 눌러주면 빠져나온다.
+			git log --oneline -> 간단하게 한줄씩으로 다 볼수 있음 
+	
+
+
+		-파일 삭제 되었을때
+			git restore text3.txt -> 한개씩 복구
+			git checkout text1.txt
+			git ls-files -d  -> 조회만 하는거 
+			git ls-files -d | xargs git checkout --  -> 모든파일 되살리기 성공
+			git restore .  -> 모든파일 되살림 
+
+		-수정 하기
+			text2.txt 파일 수정하기
+	 		git diff : stage에 올라가기 전에 내용 비교
+			git diff --staged : stage에 올라간 후에도 내용 비교 가능 
+
+			commit 은 한번에 다 되기 때문에 원하지 않는것은 restore로 내리면 된다.
+
+
+	(4) 리모트 저장소
+		1) 종류
+			-GitHub
+			-BitBucket
+			-GitLab
+			-CodeBase
+			-CloudForge
+
+
+		2) 기본 명령어
+			git remote
+			git remote -v   -> 자세히 알려줌
+
+
+			-서버 추가
+			git remote add 별명 github주소 
+			git remote add origin https://github.com/JJama23/FirstProject.git  -> 주소추가 
+
+			fetch -다운로드 , push -> 업로드 
+
+
+			- 데이터 업로드
+			git push <업로드할 서버주소> <올릴 데이터>
+			git push origin master 
+
+
+
+			- 데이터 다운로드
+			(pull, fetch)   pull -> merge까지 해준다.
+			git pull origin branch이름
+			git pull origin master
+
+
+	(5) 브랜치
+		git branch
+		git branch <브랜치 이름>
+		git checkout <브랜치 이름 >
+
+		브런치 삭제
+		git branch -D <브랜치 이름>
+
+		
+	(6) Collaboration, Fork
